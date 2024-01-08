@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">practise app</string>
+    <string name="hi_there">Hi There</string>
+    <string name="paragraph_one">Let\'s learn about you !</string>
+    <string name="paragraph_two">This app will prepare a details page based on input provided by you !</string>
+    <string name="paragraph_three">Thank You ! for sharing your data</string>
 </resources>
