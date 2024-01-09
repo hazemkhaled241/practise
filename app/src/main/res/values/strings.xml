@@ -4,4 +4,5 @@
     <string name="paragraph_one">Let\'s learn about you !</string>
     <string name="paragraph_two">This app will prepare a details page based on input provided by you !</string>
     <string name="paragraph_three">Thank You ! for sharing your data</string>
+    <string name="enter_your_name">Enter your name</string>
 </resources>
