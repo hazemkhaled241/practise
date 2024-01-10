@@ -1,6 +1,6 @@
 package com.hazem.practiseapp.presentation.screens.user_input
 
 data class UserInputScreenState(
-    val text: String = "",
-    val selectedAnimal: String = ""
+    var text: String = "",
+    var selectedAnimal: String = ""
 )

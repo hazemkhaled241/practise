@@ -5,4 +5,9 @@
     <string name="paragraph_two">This app will prepare a details page based on input provided by you !</string>
     <string name="paragraph_three">Thank You ! for sharing your data</string>
     <string name="enter_your_name">Enter your name</string>
+    <string name="name">Name</string>
+    <string name="paragraph_four">What do you like</string>
+    <string name="cat_image">Cat Image</string>
+    <string name="animal_image">Animal Image</string>
+    <string name="happy_emoji">Happy emoji</string>
 </resources>

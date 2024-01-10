@@ -1,5 +1,6 @@
 package com.hazem.practiseapp.presentation.screens.user_input
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -14,15 +15,16 @@ class UserInputViewModel @Inject constructor(): ViewModel() {
 
     fun onEvent(event:UserInputScreenEvent){
         when(event){
-            is UserInputScreenEvent.SelectedAnimal -> {
+            is UserInputScreenEvent.Text -> {
              _userInputState.value=userInputState.value.copy(
                  text = event.value
              )
             }
-            is UserInputScreenEvent.Text -> {
+            is UserInputScreenEvent.SelectedAnimal -> {
                 _userInputState.value=userInputState.value.copy(
                     selectedAnimal = event.value
                 )
+                Log.d("hhh", userInputState.value.selectedAnimal)
             }
         }
     }

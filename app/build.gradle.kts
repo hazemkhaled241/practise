@@ -73,6 +73,7 @@ dependencies {
     //navigation in compose
     val navigationVersion = "2.7.6"
     implementation("androidx.navigation:navigation-compose:$navigationVersion")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     //hilt
