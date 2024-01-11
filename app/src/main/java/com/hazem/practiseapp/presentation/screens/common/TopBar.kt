@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import com.hazem.practiseapp.R
 
 @Composable
-fun TopBar(topBarText: String, modifier: Modifier) {
+fun TopBar(topBarText: String, modifier: Modifier=Modifier,image:Int) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -35,7 +35,7 @@ fun TopBar(topBarText: String, modifier: Modifier) {
         Spacer(modifier = Modifier.size(10.dp))
         Image(
             modifier=Modifier.size(20.dp),
-            painter = painterResource(id = R.drawable.happy), contentDescription = stringResource(
+            painter = painterResource(id = image), contentDescription = stringResource(
                 R.string.happy_emoji
             ),
 
@@ -47,5 +47,5 @@ fun TopBar(topBarText: String, modifier: Modifier) {
 @Composable
 @Preview(showBackground = true)
 fun TopBarPreview() {
-    TopBar(stringResource(id = R.string.hi_there), Modifier)
+    TopBar(stringResource(id = R.string.hi_there), Modifier, R.drawable.emogi_1)
 }

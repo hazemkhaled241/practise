@@ -10,15 +10,15 @@ import androidx.compose.ui.unit.TextUnit
 @Composable
 fun TextComponent(
     textValue: String,
-    modifier: Modifier,
     fontSize: TextUnit,
-    color: Color = Color.Black
+    modifier: Modifier=Modifier,
+    color: Color = Color.Black,
 ) {
     Text(
         text = textValue,
         color = color,
-        modifier = modifier,
         fontSize = fontSize,
-        fontWeight = FontWeight.Light
+        fontWeight = FontWeight.Light,
+        modifier = modifier,
     )
 }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -18,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -26,7 +28,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.hazem.practiseapp.R
+import com.hazem.practiseapp.presentation.navigation.Screen
 import com.hazem.practiseapp.presentation.screens.common.AnimalCard
 import com.hazem.practiseapp.presentation.screens.common.TextComponent
 import com.hazem.practiseapp.presentation.screens.common.TopBar
@@ -34,40 +39,42 @@ import com.hazem.practiseapp.presentation.screens.common.TopBar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserInputScreen(
-    viewModel: UserInputViewModel = hiltViewModel()
+    viewModel: UserInputViewModel = hiltViewModel(),
+    navController:NavHostController
 ) {
     var currentValue by remember {
         mutableStateOf("")
     }
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(18.dp)
     ) {
         TopBar(
             topBarText = stringResource(id = R.string.hi_there),
-            modifier = Modifier.padding(18.dp)
+            image = R.drawable.emogi_1
         )
+
+        Spacer(modifier = Modifier.size(20.dp))
         TextComponent(
             textValue = stringResource(id = R.string.paragraph_one),
-            modifier = Modifier.padding(start = 18.dp),
             fontSize = 24.sp
         )
         Spacer(modifier = Modifier.size(20.dp))
         TextComponent(
             textValue = stringResource(id = R.string.paragraph_two),
-            modifier = Modifier.padding(start = 18.dp),
             fontSize = 18.sp
         )
         Spacer(modifier = Modifier.size(60.dp))
         TextComponent(
             textValue = stringResource(id = R.string.name),
-            modifier = Modifier.padding(start = 20.dp),
             fontSize = 18.sp
         )
         val localFocusManager = LocalFocusManager.current
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 18.dp, end = 18.dp, top = 5.dp),
+                .padding(top = 5.dp),
             value = currentValue,
             onValueChange = {
                 currentValue = it
@@ -91,7 +98,6 @@ fun UserInputScreen(
         Spacer(modifier = Modifier.size(20.dp))
         TextComponent(
             textValue = stringResource(id = R.string.paragraph_four),
-            modifier = Modifier.padding(start = 20.dp),
             fontSize = 18.sp
         )
 
@@ -102,12 +108,38 @@ fun UserInputScreen(
         ) {
             AnimalCard(image = R.drawable.cat,
                 viewModel.userInputState.value.selectedAnimal == "Cat", animalSelected = {
-                   // Log.d("hhh",viewModel.userInputState.value.selectedAnimal)
                     viewModel.onEvent(UserInputScreenEvent.SelectedAnimal(it))
-            })
-            AnimalCard(image = R.drawable.dog, viewModel.userInputState.value.selectedAnimal=="Dog", animalSelected = {
-                viewModel.onEvent(UserInputScreenEvent.SelectedAnimal(it))
-            })
+                })
+            AnimalCard(
+                image = R.drawable.dog,
+                viewModel.userInputState.value.selectedAnimal == "Dog",
+                animalSelected = {
+                    viewModel.onEvent(UserInputScreenEvent.SelectedAnimal(it))
+                })
+        }
+
+        Spacer(modifier = Modifier.size(20.dp))
+        if (viewModel.isValidState()) {
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(15.dp),
+                onClick = {
+                    navController.navigate(
+                        Screen.WelcomeScreen.setData(
+                            name = viewModel.userInputState.value.text,
+                            selectedName = viewModel.userInputState.value.selectedAnimal
+                        )
+                    )
+                },
+
+                ) {
+                TextComponent(
+                    textValue = stringResource(R.string.go_to_details_screen),
+                    fontSize = 18.sp,
+                    color = Color.White
+                )
+            }
         }
     }
 }
@@ -115,5 +147,5 @@ fun UserInputScreen(
 @Composable
 @Preview(showBackground = true)
 fun UserInputScreenPreview() {
-    UserInputScreen()
+    UserInputScreen(navController = rememberNavController())
 }

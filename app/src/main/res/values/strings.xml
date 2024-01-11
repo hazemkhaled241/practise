@@ -10,4 +10,8 @@
     <string name="cat_image">Cat Image</string>
     <string name="animal_image">Animal Image</string>
     <string name="happy_emoji">Happy emoji</string>
+    <string name="go_to_details_screen">Go to details screen</string>
+    <string name="you_are_a_dog_lover">You are a Dog Lover.</string>
+    <string name="double_quote_left">double quote left</string>
+    <string name="double_quote_right">double quote right</string>
 </resources>
